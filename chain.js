@@ -3,30 +3,29 @@
 |  =========================================================*/
 
 const BlockChain = require('./BlockChain.js');
-const Block = require('./Block.js');
+// const Block = require('./Block.js');
 
 let myBlockChain = new BlockChain.Blockchain();
 
-setTimeout(function () {
-	console.log("Waiting...")
-}, 10000);
+setTimeout(function () { console.log("Waiting...") }, 100);
 
 /******************************************
  ** Function for Create Tests Blocks   ****
  ******************************************/
 
 
-(function theLoop (i) {
-	setTimeout(function () {
-		let blockTest = new Block.Block("Test Block - " + (i + 1));
-		// Be careful this only will work if your method 'addBlock' in the Blockchain.js file return a Promise
-		myBlockChain.addBlock(blockTest).then((result) => {
-			console.log(result);
-			i++;
-			if (i < 10) theLoop(i);
-		});
-	}, 10000);
-  })(0);
+// (function theLoop(i) {
+// 	i++;
+// 	setTimeout(() => {
+// 		if (i < 10) theLoop(i);
+// 		myBlockChain.addBlock("Test Block - " + i);
+// 		// if (i == 10) { console.log(myBlockChain.chain) }
+// 	}, 100);
+// })(0);
+
+// myBlockChain.getBlock(3);
+// myBlockChain.getBlockHeight();
+// myBlockChain.validateBlock(3);
 
 
 /***********************************************
@@ -44,26 +43,26 @@ myBlockChain.getBlockHeight().then((height) => {
  ******** Function to Get a Block  *************
  ***********************************************/
 
-/*
 // Be careful this only will work if `getBlock` method in Blockchain.js file return a Promise
-myBlockChain.getBlock(0).then((block) => {
-	console.log(JSON.stringify(block));
-}).catch((err) => { console.log(err);});
-*?
+// myBlockChain.getBlock(2).then((block) => {
+// 	console.log(block);
+// }).catch((err) => { console.log(err);});
+
 
 /***********************************************
  ***************** Validate Block  *************
  ***********************************************/
 
-/*
+
 // Be careful this only will work if `validateBlock` method in Blockchain.js file return a Promise
-myBlockChain.validateBlock(0).then((valid) => {
-	console.log(valid);
-})
-.catch((error) => {
-	console.log(error);
-})
-*/
+// myBlockChain.validateBlock(0).then((valid) => {
+// 	console.log(valid);
+// })
+// .catch((error) => {
+// 	console.log(error);
+// })
+
+
 
 /** Tampering a Block this is only for the purpose of testing the validation methods */
 /*

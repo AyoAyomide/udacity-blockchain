@@ -31,14 +31,10 @@ class LevelSandbox {
             self.db.put(key, value, (err) => {
                 if (err) { reject(err) }
                 else {
-                    resolve("good");
+                    resolve("data added");
                 }
             })
             // Add your code here, remember in Promises you need to resolve() or reject() 
-        }).then(data => {
-            console.log(data);
-        }).catch(err => {
-            console.log(err);
         });
     }
 
@@ -46,6 +42,17 @@ class LevelSandbox {
     getBlocksCount() {
         let self = this;
         return new Promise(function (resolve, reject) {
+            let dataArray = [];
+            self.db.createReadStream()
+                .on("data", (data) => {
+                    dataArray.push(data);
+                })
+                .on("error", () => {
+                    reject("error occured")
+                })
+                .on("close", () => {
+                    resolve(dataArray.length);
+                })
             // Add your code here, remember in Promises you need to resolve() or reject()
         });
     }
@@ -53,7 +60,12 @@ class LevelSandbox {
 
 }
 
-let dbBox = new LevelSandbox();
+// let dbBox = new LevelSandbox();
 // dbBox.addLevelDBData("sam", "hello");
-dbBox.getLevelDBData("sam");
-// module.exports.LevelSandbox = LevelSandbox;
+// dbBox.getLevelDBData("sam").then(data => {
+//     console.log(data);
+// }).catch(err => {
+//     console.log(err);
+// });
+// dbBox.getBlocksCount();
+module.exports.LevelSandbox = LevelSandbox;
