@@ -53,7 +53,7 @@ setTimeout(function () { console.log("Waiting...") }, 100);
 // Be careful this only will work if `getBlock` method in Blockchain.js file return a Promise
 // myBlockChain.getBlock(2).then((block) => {
 // 	console.log(block);
-// }).catch((err) => { console.log(err);});
+// }).catch((err) => { console.log(err); });
 
 
 /***********************************************
@@ -108,16 +108,16 @@ myBlockChain.getBlock(6).then((block) => {
 
 
 // Be careful this only will work if `validateChain` method in Blockchain.js file return a Promise
-myBlockChain.validateChain().then((errorLog) => {
-	if (errorLog.length > 0) {
-		console.log("The chain is not valid:");
-		errorLog.forEach(error => {
-			console.log(error);
-		});
-	} else {
-		console.log("No errors found, The chain is Valid!");
-	}
-})
-	.catch((error) => {
-		console.log(error);
-	})
+// myBlockChain.validateChain().then((errorLog) => {
+// 	if (errorLog.length > 0) {
+// 		console.log("The chain is not valid:");
+// 		errorLog.forEach(error => {
+// 			console.log(error);
+// 		});
+// 	} else {
+// 		console.log("No errors found, The chain is Valid!");
+// 	}
+// })
+// 	.catch((error) => {
+// 		console.log(error);
+// 	})

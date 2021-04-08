@@ -79,7 +79,7 @@ class LevelSandbox {
 
 // let dbBox = new LevelSandbox();
 // dbBox.addLevelDBData("sam", "hello");
-// dbBox.getLevelDBData("sam").then(data => {
+// dbBox.getLevelDBData(2).then(data => {
 //     console.log(data);
 // }).catch(err => {
 //     console.log(err);

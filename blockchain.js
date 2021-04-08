@@ -73,22 +73,35 @@ class Blockchain {
                         validBlockArr.push(false);
                     }
                     if (index == (chain.length - 1)) {
-                        if (validChainArr.includes(false) || validBlockArr.includes(false)) {
-                            reject(false);
-                        } else {
-                            resolve(true);
-                        }
+                        if (validChainArr.includes(false)) reject({ error: 'invalid blockchain', data: validChainArr });
+                        if (validBlockArr.includes(false)) reject({ error: 'invalid block', data: validBlockArr });
+                        if (!validChainArr.includes(false) && !validBlockArr.includes(false)) resolve(true);
                     }
                 });
             })
         }
         return new Promise((resolve, reject) => {
             dbData()
-            .then(resolve)
-            .catch(reject)
+                .then(resolve)
+                .catch(reject)
         })
 
     }
 }
-
+// modify data in blockchain and test if they will pass through
+// let realData = JSON.stringify({
+//     hash: 'c2429f395bcd6275fab889ae8b755f3df766cc98a48f06e596237e213276c3bd',
+//     height: 2,
+//     body: 'Test Block - 2',
+//     time: '1617725146',
+//     previousblockhash: '8218010b147ef6dfe410a09da663348d1109c6b164f44866d1b4233011125b5d'
+// });
+// let fakeData = JSON.stringify({
+//     hash: 'c2429f395bcd6275fab889ae8b755f3df766cc98a48f06e596237e213276c3bd',
+//     height: 2,
+//     body: 'Test Block - 10',
+//     time: '1617725146',
+//     previousblockhash: '8218010b147ef6dfe410a09da663348d1109c6b164f44866d1b4233011125b5d'
+// });
+// dbBox.addLevelDBData(2, realData);
 module.exports.Blockchain = Blockchain;
