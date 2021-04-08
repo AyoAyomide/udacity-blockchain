@@ -57,7 +57,24 @@ class LevelSandbox {
         });
     }
 
-
+    getAllBlock() {
+        let self = this;
+        return new Promise(function (resolve, reject) {
+            let dataArray = [];
+            self.db.createReadStream()
+                .on("data", (data) => {
+                    dataArray.push(JSON.parse(data.value));
+                })
+                .on("error", () => {
+                    reject("error occured")
+                })
+                .on("close", () => {
+                    dataArray.sort((a, b) => (a.height - b.height))
+                    resolve(dataArray);
+                })
+            // Add your code here, remember in Promises you need to resolve() or reject()
+        });
+    }
 }
 
 // let dbBox = new LevelSandbox();

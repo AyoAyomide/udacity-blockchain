@@ -1,5 +1,5 @@
-2021/04/06-16:13:56.194 41a4 Recovering log #48
-2021/04/06-16:13:56.194 41a4 Level-0 table #50: started
-2021/04/06-16:13:56.211 41a4 Level-0 table #50: 340 bytes OK
-2021/04/06-16:13:56.236 41a4 Delete type=0 #48
-2021/04/06-16:13:56.236 41a4 Delete type=3 #46
+2021/04/08-19:52:00.578 d7c Recovering log #721
+2021/04/08-19:52:00.578 d7c Level-0 table #723: started
+2021/04/08-19:52:00.602 d7c Level-0 table #723: 340 bytes OK
+2021/04/08-19:52:00.628 d7c Delete type=0 #721
+2021/04/08-19:52:00.628 d7c Delete type=3 #719

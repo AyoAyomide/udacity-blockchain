@@ -15,29 +15,36 @@ setTimeout(function () { console.log("Waiting...") }, 100);
 
 
 // (function theLoop(i) {
-// 	i++;
 // 	setTimeout(() => {
+// 		myBlockChain.addBlock("Test Block - " + (i + 1));
+// 		i++;
 // 		if (i < 10) theLoop(i);
-// 		myBlockChain.addBlock("Test Block - " + i);
-// 		// if (i == 10) { console.log(myBlockChain.chain) }
 // 	}, 100);
 // })(0);
 
 // myBlockChain.getBlock(3);
 // myBlockChain.getBlockHeight();
 // myBlockChain.validateBlock(3);
+// myBlockChain.validateChain()
+// ;
+// .then(data => {
+// 	console.log(data);
+// }).catch(err => {
+// 	console.log(err);
+// });
 
 
 /***********************************************
  ** Function to get the Height of the Chain ****
  ***********************************************/
 
-/*
+
 // Be careful this only will work if `getBlockHeight` method in Blockchain.js file return a Promise
-myBlockChain.getBlockHeight().then((height) => {
-	console.log(height);
-}).catch((err) => { console.log(err);});
-*/
+// myBlockChain.getBlockHeight().then((height) => {
+// 	console.log(height);
+// }).catch((err) => { console.log(err);});
+
+
 
 /***********************************************
  ******** Function to Get a Block  *************
@@ -99,10 +106,10 @@ myBlockChain.getBlock(6).then((block) => {
  ***************** Validate Chain  *************
  ***********************************************/
 
-/*
+
 // Be careful this only will work if `validateChain` method in Blockchain.js file return a Promise
 myBlockChain.validateChain().then((errorLog) => {
-	if(errorLog.length > 0){
+	if (errorLog.length > 0) {
 		console.log("The chain is not valid:");
 		errorLog.forEach(error => {
 			console.log(error);
@@ -111,7 +118,6 @@ myBlockChain.validateChain().then((errorLog) => {
 		console.log("No errors found, The chain is Valid!");
 	}
 })
-.catch((error) => {
-	console.log(error);
-})
-*/
+	.catch((error) => {
+		console.log(error);
+	})

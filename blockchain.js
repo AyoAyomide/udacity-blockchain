@@ -32,11 +32,12 @@ class Blockchain {
     }
 
     getBlockHeight() {
-        dbBox.getBlocksCount().then(data => {
-            console.log(data);
-        }).catch(err => {
-            console.log(data);
-        });
+        // let self = this;
+        return new Promise((resolve, reject) => {
+            dbBox.getBlocksCount()
+                .then(data => resolve(data))
+                .catch(err => reject(err))
+        })
     }
 
     validateBlock(blockHeight) {
@@ -51,17 +52,43 @@ class Blockchain {
     }
 
     validateChain() {
+        let self = this;
+        let dbData = async () => {
+            let validChainArr = [];
+            let validBlockArr = [];
+            let chain = await dbBox.getAllBlock();
+            return new Promise((resolve, reject) => {
+                chain.forEach((el, index) => {
+                    let prevChainKey = index + 1;
+                    if (prevChainKey != chain.length) {
+                        if (el.hash == chain[prevChainKey].previousblockhash) {
+                            validChainArr.push(true);
+                        } else {
+                            validChainArr.push(false);
+                        }
+                    }
+                    if (el.hash == SHA256(el.body).toString()) {
+                        validBlockArr.push(true);
+                    } else {
+                        validBlockArr.push(false);
+                    }
+                    if (index == (chain.length - 1)) {
+                        if (validChainArr.includes(false) || validBlockArr.includes(false)) {
+                            reject(false);
+                        } else {
+                            resolve(true);
+                        }
+                    }
+                });
+            })
+        }
+        return new Promise((resolve, reject) => {
+            dbData()
+            .then(resolve)
+            .catch(reject)
+        })
 
     }
 }
-// let blochchain = new Blockchain();
-// setTimeout(() => {
-//     blochchain.addBlock("sam");
-//     console.log(blochchain);
-// }, 1000);
 
 module.exports.Blockchain = Blockchain;
-
-
-// dbBox.addLevelDBData("sam", "hello");
-// dbBox.getBlocksCount();
